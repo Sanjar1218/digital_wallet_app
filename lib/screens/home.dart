@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,17 +13,38 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 229, 229, 229),
+      backgroundColor: const Color.fromARGB(255, 239, 239, 239),
       body: Column(children: [
-        const Text('Your Balance'),
-        Text('Rp $price'),
-        Row(
-          children: [
-            newIcons('transfer.png', 'Transfer'),
-            newIcons('top.png', 'Top-up'),
-            newIcons('bill.png', 'Bill'),
-            newIcons('more.png', 'More'),
-          ],
+        const SizedBox(height: 100),
+        Text('Your Balance',
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                color: Color.fromARGB((255 * 0.5).toInt(), 8, 36, 49),
+              ),
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+            )),
+        Text(
+          'Rp $price',
+          style: GoogleFonts.poppins(
+              textStyle:
+                  const TextStyle(color: Color.fromARGB(255, 44, 44, 99)),
+              fontWeight: FontWeight.w400,
+              fontSize: 36,
+              fontStyle: FontStyle.normal),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 48),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              newIcons('transfer.png', 'Transfer'),
+              newIcons('top.png', 'Top-up'),
+              newIcons('bill.png', 'Bill'),
+              newIcons('more.png', 'More'),
+            ],
+          ),
         ),
         Container(
           width: double.infinity,
@@ -34,39 +56,84 @@ class _HomeState extends State<Home> {
             ),
             color: Colors.white,
           ),
-          child: Column(children: [
-            const Text('Transactions'),
-            transCard('grocery.png', 'Grocer', 'Nov 17', 326800,
-                'Minimarket Anugrah'),
-            transCard('entertainment.png', 'Entertainment', 'Nov 17', 326800,
-                'Football Game'),
-            transCard(
-                'equipment.png', 'Equipments', 'Nov 17', 326800, 'DSLR Camera'),
-            transCard(
-                'items.png', 'Office Items', 'Nov 17', 326800, 'Stationary'),
-          ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Transactions',
+                style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                        color: Color.fromRGBO(8, 36, 49, 0.5),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14)),
+              ),
+              transCard('grocery.png', 'Grocer', 'Nov 17', 326800,
+                  'Minimarket Anugrah'),
+              transCard('entertainment.png', 'Entertainment', 'Nov 17', 326800,
+                  'Football Game'),
+              transCard('equipment.png', 'Equipments', 'Nov 17', 326800,
+                  'DSLR Camera'),
+              transCard(
+                  'items.png', 'Office Items', 'Nov 17', 326800, 'Stationary'),
+            ],
+          ),
         )
       ]),
     );
   }
 
-  Row transCard(
+  Widget transCard(
       String img, String name, String date, int price, String fullName) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(children: [
-          Image.asset('assets/trans/$img'),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Text(name), Text(date)],
-          )
-        ]),
-        Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [Text(price.toString()), Text(fullName)])
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 32.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(children: [
+            Image.asset('assets/trans/$img'),
+            const SizedBox(width: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                          color: Color.fromARGB(255, 39, 50, 64),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13)),
+                ),
+                Text(
+                  date,
+                  style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                          color: Color.fromRGBO(44, 58, 75, 0.5),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12)),
+                )
+              ],
+            )
+          ]),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Text(
+              price.toString(),
+              style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                      color: Color.fromARGB(255, 39, 50, 64),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 13)),
+            ),
+            Text(
+              fullName,
+              style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                      color: Color.fromRGBO(44, 58, 75, 0.5),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12)),
+            )
+          ])
+        ],
+      ),
     );
   }
 
@@ -80,7 +147,15 @@ class _HomeState extends State<Home> {
             'assets/img/$img',
           ),
         ),
-        Text(text)
+        Text(
+          text,
+          style: GoogleFonts.poppins(
+              textStyle: const TextStyle(
+                  color: Color.fromARGB(255, 129, 129, 151),
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 15)),
+        )
       ],
     );
   }
