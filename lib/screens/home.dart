@@ -10,75 +10,101 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int price = 8250000;
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 239, 239),
-      body: Column(children: [
-        const SizedBox(height: 100),
-        Text('Your Balance',
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const SizedBox(height: 100),
+          Text('Your Balance',
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  color: Color.fromARGB((255 * 0.5).toInt(), 8, 36, 49),
+                ),
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
+              )),
+          Text(
+            'Rp $price',
             style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                color: Color.fromARGB((255 * 0.5).toInt(), 8, 36, 49),
-              ),
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-            )),
-        Text(
-          'Rp $price',
-          style: GoogleFonts.poppins(
-              textStyle:
-                  const TextStyle(color: Color.fromARGB(255, 44, 44, 99)),
-              fontWeight: FontWeight.w400,
-              fontSize: 36,
-              fontStyle: FontStyle.normal),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 48),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              newIcons('transfer.png', 'Transfer'),
-              newIcons('top.png', 'Top-up'),
-              newIcons('bill.png', 'Bill'),
-              newIcons('more.png', 'More'),
-            ],
+                textStyle:
+                    const TextStyle(color: Color.fromARGB(255, 44, 44, 99)),
+                fontWeight: FontWeight.w400,
+                fontSize: 36,
+                fontStyle: FontStyle.normal),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 28, horizontal: 42),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 48),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                newIcons('transfer.png', 'Transfer'),
+                newIcons('top.png', 'Top-up'),
+                newIcons('bill.png', 'Bill'),
+                newIcons('more.png', 'More'),
+              ],
             ),
-            color: Colors.white,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Transactions',
-                style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                        color: Color.fromRGBO(8, 36, 49, 0.5),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14)),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: 28, horizontal: 42),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
               ),
-              transCard('grocery.png', 'Grocer', 'Nov 17', 326800,
-                  'Minimarket Anugrah'),
-              transCard('entertainment.png', 'Entertainment', 'Nov 17', 326800,
-                  'Football Game'),
-              transCard('equipment.png', 'Equipments', 'Nov 17', 326800,
-                  'DSLR Camera'),
-              transCard(
-                  'items.png', 'Office Items', 'Nov 17', 326800, 'Stationary'),
-            ],
-          ),
-        )
-      ]),
+              color: Colors.white,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Transactions',
+                  style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                          color: Color.fromRGBO(8, 36, 49, 0.5),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14)),
+                ),
+                transCard('grocery.png', 'Grocer', 'Nov 17', 326800,
+                    'Minimarket Anugrah'),
+                transCard('entertainment.png', 'Entertainment', 'Nov 17',
+                    326800, 'Football Game'),
+                transCard('equipment.png', 'Equipments', 'Nov 17', 326800,
+                    'DSLR Camera'),
+                transCard('items.png', 'Office Items', 'Nov 17', 326800,
+                    'Stationary'),
+              ],
+            ),
+          )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        onTap: (value) {
+          setState(() {
+            index = value;
+          });
+        },
+        currentIndex: index,
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded), label: 'home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.grid_view_rounded), label: 'more'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.pie_chart_rounded), label: 'more'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings_rounded), label: 'more'),
+        ],
+      ),
     );
   }
 
